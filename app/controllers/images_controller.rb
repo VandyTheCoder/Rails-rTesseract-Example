@@ -1,10 +1,10 @@
 class ImagesController < ApplicationController
-  before_action :set_image, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_image, only: [:show, :edit, :update, :destroy, :export_pdf, :export_doc]
   # GET /images
   # GET /images.json
   def index
-    @im = RTesseract.new(Rails.root.join('public', 'assets','invoice3.jpg').to_s, :processor => "none")
+    @images = Image.all
+    @images = @images.paginate(:page => params[:page], per_page: 4)
   end
 
   # GET /images/1
@@ -25,9 +25,11 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
-
+    @image.text = ''
     respond_to do |format|
       if @image.save
+        @image.text = RTesseract.new(Rails.root.join('public', 'assets', @image.id.to_s, @image.url.file.filename).to_s, :processor => "none")
+        @image.update(image_params)
         format.html { redirect_to @image, notice: 'Image was successfully created.' }
         format.json { render :show, status: :created, location: @image }
       else
@@ -42,6 +44,8 @@ class ImagesController < ApplicationController
   def update
     respond_to do |format|
       if @image.update(image_params)
+        @image.text = RTesseract.new(Rails.root.join('public', 'assets', @image.id.to_s, @image.url.file.filename).to_s, :processor => "none")
+        @image.update(image_params)
         format.html { redirect_to @image, notice: 'Image was successfully updated.' }
         format.json { render :show, status: :ok, location: @image }
       else
@@ -61,6 +65,34 @@ class ImagesController < ApplicationController
     end
   end
 
+  def export_pdf
+    text_data = @image.text
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = Prawn::Document.new do
+          font_families.update("OpenSans" => {
+            :normal => Rails.root.join("app/assets/fonts/OpenSans-Regular.ttf"),
+            :italic => Rails.root.join("app/assets/fonts/OpenSans-Regular.ttf"),
+            :bold => Rails.root.join("app/assets/fonts/OpenSans-Regular.ttf"),
+            :bold_italic => Rails.root.join("app/assets/fonts/OpenSans-Regular.ttf")
+          })
+          font "OpenSans"
+          text text_data
+        end
+        send_data pdf.render
+      end
+    end
+  end
+
+  def export_doc
+    file = Rails.root.join('public', 'docs', 'export.docx')
+    open(file, 'w') do |f|
+      f.puts @image.text
+    end
+    redirect_to '/docs/export.docx'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_image
@@ -69,6 +101,6 @@ class ImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
-      params.require(:image).permit(:url, :author)
+      params.require(:image).permit(:url_cache, :url, :text, :author)
     end
 end

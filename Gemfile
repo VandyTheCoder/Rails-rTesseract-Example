@@ -32,10 +32,16 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'paperclip'
 gem 'rmagick', '~> 2.16'
 gem 'rtesseract', '>= 2.0.1'
 gem 'carrierwave', '~> 1.1'
+gem 'font-awesome-rails', '~> 4.7.0.2'
+gem 'prawn'
+gem 'responders', '~> 2.4'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate', '~> 1.0'
+gem 'ckeditor', '~> 4.2', '>= 4.2.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
