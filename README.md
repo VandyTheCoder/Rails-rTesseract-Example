@@ -2,22 +2,24 @@
 
 This application was developed by Ruby on Rails framework. There are two developers, Nhean and Kanitha. We both are year-four students majoring Computer Science at National Institute of Posts, Telecommunications and ICT which located in Phnom Penh, Cambodia. Please feel free to use our app. It is open source application. If you are developer, human resource manager or CEO of well-known company, please give us an opportunity to work or intern in your company. We would like to explore and learn as we are next generation of technology.
 
+# Detail of Application
 
+* Ruby Version : 2.3.1
 
-* Ruby version
+* Rails Version : 5.1.3
 
-* System dependencies
+* Dependencies : Tessaract OCR (Tessdata Eng + KH)
 
-* Configuration
+* Database : sqlite 3 (V: 1.3.13)
 
-* Database creation
+* Installation for Developement
+  -> clone the project(https://github.com/Sodanheang/Rails-Image-to-Text-with-RTessaract-Application.git)
+  -> Open Terminal > go to project folder > "$ bundle install" > "$ rake db:migrate" > "$ rake s"
+  -> Open Browser > Url > "http://localhost:3000"
+  -> Done :)
 
-* Database initialization
+* Gems : RTessaract, Bootstrap, ...
 
-* How to run the test suite
+* Project Version : 0.9.0beta
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Thank You for interesting in our project!
