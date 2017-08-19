@@ -1,0 +1,45 @@
+.form-group
+  - if form.object.url.blank?
+    %a{:href => ""}
+      = image_tag "default.png", style: 'width: 100%; height:250px',class: 'img-responsive', id: 'image-show'
+  - else
+    %a{:href => ""}
+      = image_tag form.object.url, style: 'width: 100%; height:250px',class: 'img-responsive', id: 'image-show'
+  %br/
+  %label#upload-btn.btn.btn-outline-secondary{style: "margin-left: 0px"}
+    %i.fa.fa-cloud-upload{"aria-hidden" => "true"}
+    Upload Image
+  = form.file_field :url, id: :image_url, style: 'display: none', id: 'files'
+  = form.hidden_field :url_cache
+.field
+  = form.label 'Title'
+  = form.text_field :author, id: :image_author, class: 'form-control'
+%br/
+
+:javascript
+  $(document).ready(function() {
+    $('#image-button').click(function(){
+      show_slow_warning();
+    });
+  });
+  
+  $(document).ready(function(){
+    $('#upload-btn').click(function()
+    {
+      $('#files').click();
+    });
+  
+    $('#image-show').click(function()
+    {
+      $('#files').click();
+    });
+  
+    document.getElementById("files").onchange = function () {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById("image-show").src = e.target.result;
+      };
+      reader.readAsDataURL(this.files[0]);
+    };
+  });
+

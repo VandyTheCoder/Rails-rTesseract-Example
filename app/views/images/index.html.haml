@@ -1,0 +1,40 @@
+.row.justify-content-center
+  .col-md-9
+    %br/
+    %nav.nav
+      = link_to root_path, class: 'nav-link active' do
+        %i.fa.fa-home{"aria-hidden" => "true"}
+        Home
+      = link_to about_path, class: "nav-link" do
+        %i.fa.fa-users{"aria-hidden" => "true"}
+        About Us
+    %hr/
+    .row
+      .col-md-6
+        = will_paginate(@images, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer)
+      .col-md-6{:align => "right", :style => "margin-bottom: 15px"}
+        = link_to new_image_path, class: 'btn btn-outline-info' do
+          %i.fa.fa-cloud-upload{"aria-hidden" => "true"}
+          Upload Image
+        %a.btn.btn-outline-success{:href => "/images.json"}
+          %i.fa.fa-cube{"aria-hidden" => "true"}
+          JSON
+    .row
+      - @images.each do |image|
+        .col-md-6.col-xs-12{:style => "margin-bottom: 25px"}
+          .card
+            = image_tag image.url, class: 'card-img-top', style: 'width: 100%; height: 250px'
+            .card-body
+              %h4.card-title= image.author
+              %br/
+              = link_to image, class: 'card-link info' do
+                %i.fa.fa-eye{"aria-hidden" => "true"}
+                Show
+              = link_to edit_image_path(image), class: 'card-link' do
+                %i.fa.fa-edit{"aria-hidden" => "true"}
+                Edit
+              = link_to image, method: :delete, data: {confirm: 'Are you sure?'}, class: 'card-link' do
+                %i.fa.fa-trash{"aria-hidden" => "true"}
+                Delete
+    %hr/
+    = will_paginate(@images, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer)

@@ -1,0 +1,37 @@
+.row.justify-content-center
+  .col-md-9
+    %br/
+    - if @image.errors.any?
+      #error_explanation.alert.alert-danger{:role => "alert"}
+        %h2
+          = pluralize(@image.errors.count, "error")
+          prohibited this image from being saved:
+        %ul
+          - @image.errors.full_messages.each do |message|
+            %li= message
+    %h1 Editing Image
+    %hr/
+    = form_with(model: @image, local: true) do |form|
+      .row
+        .col-md-4.col-xs-12
+          = render 'form', image: @image, form: form
+        .col-md-8.col-xs-12
+          .card.bg-dark.text-white{:style => "border: none;"}
+            = image_tag 'bac-login.jpg', class: 'card-img', style: 'height: 380px'
+            .card-img-overlay
+              %h4.card-title Image to Text
+              %p.card-text This tool required you to put image and author in order to conver it. It is opensource application that was built by Ruby on Rials. Please remember that everything is free for all user.
+              %p.card-text Nhean & Kanitha
+      .row
+        .col-md-12.col-xs-12
+          .actions
+            = button_tag type: 'submit', class: "btn btn-info", id: "image-button" do
+              %i.fa.fa-save{"aria-hidden" => "true"}
+              Submit
+    %hr/
+    = link_to images_path, class: 'btn btn-outline-secondary' do
+      %i.fa.fa-chevron-left{"aria-hidden" => "true"}
+      Back
+    = link_to @image, class: 'btn btn-outline-info' do
+      %i.fa.fa-eye{"aria-hidden" => "true"}
+      Show

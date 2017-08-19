@@ -1,0 +1,42 @@
+%br/
+- if notice.present?
+  .alert.alert-success{:role => "alert"}
+    = notice
+%h2= @image.url.file.filename
+%hr/
+.row
+  .col-md-3.col-xs-12
+    = image_tag @image.url, style: 'width: 100%; height:250px'
+    = link_to @image.url_url, class: 'btn btn-outline-secondary', style: 'width: 100%; margin-bottom: 15px; margin-left: 0px; border-radius: 0' do
+      %i.fa.fa-eye
+      View Image
+  .col-md-9.col-xs-12
+    %p
+      %strong Title:
+      = @image.author
+    %p
+      %strong Text:
+      %br/
+      - opts = @image.text.to_s.split("\n")
+      - opts.each do |opt|
+        %lable= opt
+        %br/
+%hr/
+.row
+  .col-md-6{:style => "margin-bottom: 15px"}
+    = link_to images_path, class: 'btn btn-secondary' do
+      %i.fa.fa-chevron-left
+      Back
+    = link_to edit_image_path(@image), class: 'btn btn-info' do
+      %i.fa.fa-edit
+      Edit
+  .col-md-6{:align => "right"}
+    = link_to "/images/"+"\#{@image.id}"+".json", class: 'btn btn-outline-success' do
+      %i.fa.fa-cube
+      JSON
+    = link_to export_image_pdf_path(@image, format: 'pdf'), class: 'btn btn-outline-danger' do
+      %i.fa.fa-file-pdf-o
+      PDF
+    = link_to export_image_doc_path(@image), class: 'btn btn-outline-primary' do
+      %i.fa.fa-file-word-o
+      DOC

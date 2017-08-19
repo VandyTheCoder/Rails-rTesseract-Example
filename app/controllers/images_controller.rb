@@ -3,7 +3,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.all
+    @images = Image.order("id DESC")
     @images = @images.paginate(:page => params[:page], per_page: 4)
   end
 
@@ -28,7 +28,7 @@ class ImagesController < ApplicationController
     @image.text = ''
     respond_to do |format|
       if @image.save
-        @image.text = RTesseract.new(Rails.root.join('public', 'assets', @image.id.to_s, @image.url.file.filename).to_s, :processor => "none")
+        @image.text = RTesseract.new(Rails.root.join('public', 'assets', @image.id.to_s, @image.url.file.filename).to_s, lang: 'eng+khm', :processor => "none")
         @image.update(image_params)
         format.html { redirect_to @image, notice: 'Image was successfully created.' }
         format.json { render :show, status: :created, location: @image }
@@ -91,6 +91,9 @@ class ImagesController < ApplicationController
       f.puts @image.text
     end
     redirect_to '/docs/export.docx'
+  end
+
+  def about
   end
 
   private
