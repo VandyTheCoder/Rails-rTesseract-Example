@@ -13,10 +13,10 @@ This application was developed by Ruby on Rails framework. There are two develop
 * Database : sqlite 3 (V: 1.3.13)
 
 * Installation for Developement
-  /n clone the project(https://github.com/Sodanheang/Rails-Image-to-Text-with-RTessaract-Application.git)
-  /n Open Terminal > go to project folder > "$ bundle install" > "$ rake db:migrate" > "$ rake s"
-  /n Open Browser > Url > "http://localhost:3000"
-  /n Done :)
+  <br> clone the project(https://github.com/Sodanheang/Rails-Image-to-Text-with-RTessaract-Application.git)
+  <br> Open Terminal > go to project folder > "$ bundle install" > "$ rake db:migrate" > "$ rake s"
+  <br> Open Browser > Url > "http://localhost:3000"
+  <br> Done :)
 
 * Gems : RTessaract, Bootstrap, ...
 
