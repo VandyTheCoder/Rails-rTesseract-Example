@@ -13,7 +13,7 @@ This application was developed by Ruby on Rails framework. There are two develop
 * Database : sqlite 3 (V: 1.3.13)
 
 * Installation for Developement
-  <br>-> clone the project(https://github.com/Sodanheang/Rails-Image-to-Text-with-RTessaract-Application.git)
+  <br>-> clone the project(https://github.com/Sodanheang/Rails-rTesseract-Example.git)
   <br>-> Open Terminal > go to project folder > "$ bundle install" > "$ rake db:migrate" > "$ rake s"
   <br>-> Open Browser > Url > "http://localhost:3000"
   <br>-> Done :)
