@@ -1,25 +1,61 @@
-# Image to Text
+# Rails rTesseract Example
 
-This application was developed by Ruby on Rails framework. There are two developers, Nhean and Kanitha. We both are year-four students majoring Computer Science at National Institute of Posts, Telecommunications and ICT which located in Phnom Penh, Cambodia. Please feel free to use our app. It is open source application. If you are developer, human resource manager or CEO of well-known company, please give us an opportunity to work or intern in your company. We would like to explore and learn as we are next generation of technology.
+This project, I created for practicing to use [Tesseract-OCR](https://github.com/tesseract-ocr/) and [rTesseract-OCR Gem](https://github.com/dannnylo/rtesseract). It is OCR system for English and Khmer and created by using [Ruby On Rails](http://rubyonrails.org/).
 
-# Detail of Application
+## Getting Started
 
-* Ruby Version : 2.3.1
+Before you install this project, there are some required source you need to install first before installing the project.
 
-* Rails Version : 5.1.3
+### Prerequisites
 
-* Dependencies : Tessaract OCR (Tessdata Eng + KH)
+Install [Tesseract-OCR](https://github.com/tesseract-ocr/)
+```
+sudo apt-get install tesseract-ocr-eng
+sudo apt-get install tesseract-ocr-khm
+```
 
-* Database : sqlite 3 (V: 1.3.13)
+Install [ImageMagick](https://www.imagemagick.org/script/index.php)
+```
+sudo apt install imagemagick
+convert -h
+```
 
-* Installation for Developement
-  <br>-> clone the project(https://github.com/Sodanheang/Rails-rTesseract-Example.git)
-  <br>-> Open Terminal > go to project folder > "$ bundle install" > "$ rake db:migrate" > "$ rake s"
-  <br>-> Open Browser > Url > "http://localhost:3000"
-  <br>-> Done :)
+### Installing
 
-* Gems : RTessaract, Bootstrap, ...
+You need to install the third party library gems from [RubyGems](https://rubygems.org/) and create the database.
 
-* Project Version : 0.9.0beta
+Install Gems
 
-# Thank You for interesting in our project!
+```
+bundle install
+```
+
+Create database and tables
+
+```
+rails db:migrate
+```
+
+Running Application
+
+```
+rails server
+```
+
+***Congratulation!*** Now, you already run the project on your machine or server.
+
+
+## Versioning
+
+Rails rTesseract Example' Version is ***1.0.0***.
+
+## Authors
+
+* **Vandy Sodanheang** - *Initial work* - [Web and Mobile Developer](https://www.linkedin.com/in/vandy-sodanheang-368410113/)
+* **Chim Kanitha** - *Co-initial work* - [Web and Mobile Developer](https://www.linkedin.com/in/kanitha-chim-a5b487b9/)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
